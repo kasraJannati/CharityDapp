@@ -53,7 +53,7 @@ contract MetaCoin {
 	function getInfoPrevious(address receiver) public view returns(string memory,uint,string memory){
 		string storage id = getID[receiver];
 		if (bytes(id).length == 0){
-			return ("Null",0,id);
+		
 		}
 		return (ID[id].name,ID[id].amount,id);
 	}
