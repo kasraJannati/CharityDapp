@@ -9,6 +9,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Kasra Jannati",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasraJannati/CharityDapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kasraJannati/CharityDapp/issues"
+  },
+  "homepage": "https://github.com/kasraJannati/CharityDapp#readme"
 }
