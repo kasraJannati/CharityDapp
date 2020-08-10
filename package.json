@@ -1,26 +1,14 @@
 {
-  "name": "charitydapp",
+  "name": "charity",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is Dapp application",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "web3": "^1.2.11"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kasraJannati/CharityDapp.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kasraJannati/CharityDapp/issues"
-  },
-  "homepage": "https://github.com/kasraJannati/CharityDapp#readme"
+  "license": "ISC"
 }
