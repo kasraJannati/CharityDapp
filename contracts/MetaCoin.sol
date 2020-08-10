@@ -30,7 +30,7 @@ contract MetaCoin {
 	}
 
 
-	function sendCoin(address receiver, uint amount,string name,string id) public returns(bool sufficient) {
+	function sendCoin(address receiver, uint amount,string memory name,string memory id) public returns(bool sufficient) {
 		Location memory newLocation;
         newLocation.Receiver = receiver;
         newLocation.Timestamp = now;
@@ -50,22 +50,22 @@ contract MetaCoin {
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
-	function getInfoPrevious(address receiver) public view returns(string,uint,string){
+	function getInfoPrevious(address receiver) public view returns(string memory,uint,string memory){
 		string storage id = getID[receiver];
 		if (bytes(id).length == 0){
 			return ("Null",0,id);
 		}
 		return (ID[id].name,ID[id].amount,id);
 	}
-	function getTransactionByID(string id) public view returns(uint,string,address) {
+	function getTransactionByID(string memory id) public view returns(uint,string memory,address) {
 		
 		return (ID[id].amount,ID[id].name,ID[id].Receiver);
 	}
 
- 	function GetTrailCount() public pure returns(uint8){
+ 	function GetTrailCount() public view returns(uint8){
         return MetaCoin.TrailCount;
     }
-    function GetLocation(uint8 TrailNo) public view returns (string,uint,address)
+    function GetLocation(uint8 TrailNo) public view returns (string memory,uint,address)
     {
         return (Trail[TrailNo].name,Trail[TrailNo].amount,Trail[TrailNo].Receiver);
     }
