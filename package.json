@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/kasraJannati/CharityDapp/issues"
   },
-  "homepage": "https://github.com/kasraJannati/CharityDapp#readme"
+  "homepage": "https://github.com/kasraJannati/CharityDapp#readme",
+  "dependencies": {
+    "web3": "^1.2.11"
+  }
 }
