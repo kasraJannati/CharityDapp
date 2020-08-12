@@ -40,6 +40,8 @@ const App = {
     })
   },
 
+  
+
   setStatus: function (message) {
     const status = document.getElementById('status')
     status.innerHTML = message
