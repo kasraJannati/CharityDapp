@@ -1,22 +1,17 @@
-// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.25 <0.7.0;
 
 import "./ConvertLib.sol";
 
-// This is just a simple example of a coin-like contract.
-// It is not standards compatible and cannot be expected to talk to other
-// coin/token contracts. If you want to create a standards-compliant
-// token, see: https://github.com/ConsenSys/Tokens. Cheers!
-
 contract MetaCoin {
+
 	struct Location{
 		string name;
         address Receiver;
 		address PreviousLocationId;
         uint Timestamp;
 		uint amount;
-		 
     }
+
 	mapping(address=>string) getID;
 	mapping(string=>Location) ID;
     mapping(uint=>Location) Trail;
@@ -24,11 +19,10 @@ contract MetaCoin {
     mapping (address => uint) balances;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
-
+	
 	constructor() public {
 		balances[tx.origin] = 10000;
 	}
-
 
 	function sendCoin(address receiver, uint amount,string memory name,string memory id) public returns(bool sufficient) {
 		Location memory newLocation;
@@ -50,6 +44,7 @@ contract MetaCoin {
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
+
 	function getInfoPrevious(address receiver) public view returns(string memory,uint,string memory){
 		string storage id = getID[receiver];
 		if (bytes(id).length == 0){
@@ -57,6 +52,7 @@ contract MetaCoin {
 		}
 		return (ID[id].name,ID[id].amount,id);
 	}
+
 	function getTransactionByID(string memory id) public view returns(uint,string memory,address) {
 		
 		return (ID[id].amount,ID[id].name,ID[id].Receiver);
@@ -65,10 +61,12 @@ contract MetaCoin {
  	function GetTrailCount() public view returns(uint8){
         return MetaCoin.TrailCount;
     }
+
     function GetLocation(uint8 TrailNo) public view returns (string memory,uint,address)
     {
         return (Trail[TrailNo].name,Trail[TrailNo].amount,Trail[TrailNo].Receiver);
     }
+
 	function getBalanceInEth(address addr) public view returns(uint){
 		return ConvertLib.convert(getBalance(addr),2);
 	}
@@ -76,6 +74,7 @@ contract MetaCoin {
 	function getBalance(address addr) public view returns(uint) {
 		return balances[addr];
 	}
+
 	function getaddress() public view returns(address) {
 		return msg.sender;
 	}
