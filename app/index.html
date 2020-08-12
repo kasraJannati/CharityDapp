@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Dapp-Charity</title>
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="./app.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+     body
+      {
+        background: url("app/img/charity.jpg") no-repeat center;
+        background-size: contain;
+        background-color: #000;
+      }
+      .boxFull{
+        color:#fff;
+        font-size: 16px;
+        margin-top:50px;
+      }
+      button{
+        margin:10px;
+      }
+    </style>
+  </head>
+    
+  <body>
+    <div class="container boxFull">
+
+      <h1>Charity-Dapp</h1>
+      <div>You have <span id="balance"></span> Dollars</div>
+
+      <div class="form-group">
+        <label for="uniqueID">Unique ID:</label>
+        <input type="text" class="form-control" id="uniqueID">
+        <button type="submit" class="btn btn-primary" id="getUniqueID" onclick="App.generateID()">Get Unique Transaction ID</button>
+        <button type="submit" class="btn btn-primary" id="getInfoByID" onclick="App.getInfoByID()">Track Your Money</button>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" class="form-control" id="amount">
+      </div>
+   
+      <div class="form-group">
+        <label for="receiver">To Address:</label>
+        <input type="text" class="form-control" id="receiver">
+      </div>
+
+      <div class="form-group">
+        <label for="locationName">Name:</label>
+        <input type="text" class="form-control" id="locationName">
+      </div>
+
+      <button class="btn btn-primary" id="getPrevious" onclick="App.getPreviousInfo()">Show Received Money</button>
+      <button class="btn btn-primary" id="send" onclick="App.sendCoin()">Send Dollars</button>
+
+      <div id="status"></div>
+
+      <button class="btn btn-primary" id="getAccount" onclick="App.getAccount()">Get the current account</button>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
