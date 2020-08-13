@@ -46,6 +46,7 @@ contract CharityApp is Ownable {
   uint256 public minAmount;
   address[] public donors;
  
+ /* check the address and amount */
   modifier validateDonation(address _donor, uint256 _minAmount) {
     require(_donor != address(0));
     require(minAmount <= _minAmount);
