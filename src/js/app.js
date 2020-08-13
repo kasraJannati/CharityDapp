@@ -2,6 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  minAmount: 0 ,
 
   init: function() {
     return App.initWeb3();
@@ -10,6 +11,8 @@ App = {
   initWeb3: function() {
     if (typeof web3 !== 'undefined') {
       // If a web3 instance is already provided by Meta Mask.
+      
+      window.ethereum.enable()
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
     } else {
@@ -21,17 +24,24 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON("Election.json", function(election) {
+    $.getJSON("CharityApp.json", function(CharityApp) {
       // Instantiate a new truffle contract from the artifact
-      App.contracts.Election = TruffleContract(election);
+      App.contracts.CharityApp = TruffleContract(CharityApp);
       // Connect provider to interact with contract
-      App.contracts.Election.setProvider(App.web3Provider);
-
+      App.contracts.CharityApp.setProvider(App.web3Provider);
+      App.contracts.CharityApp.deployed().then(instance=>{
+        console.log(instance)
+        instance.minAmount.call().then(amount => {
+          App.minAmount = Number(amount)
+        })
+      
+    
+      })
       return App.render();
     });
   },
 
-  render: function() {
+  render: async function() {
     var electionInstance;
     var loader = $("#loader");
     var content = $("#content");
@@ -40,32 +50,32 @@ App = {
     content.hide();
 
     // Load account data
-    web3.eth.getCoinbase(function(err, account) {
-      if (err === null) {
-        App.account = account;
-        $("#accountAddress").html("Your Account: " + account);
-      }
-    });
+    App.account=web3.eth.accounts[0];    
+    $("#accountAddress").html("Your Account: " + App.account);
+
 
     // Load contract data
-    App.contracts.Election.deployed().then(function(instance) {
-      electionInstance = instance;
-      return electionInstance.candidatesCount();
-    }).then(function(candidatesCount) {
-      var candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
+    App.contracts.CharityApp.deployed().then(function(instance) {
+      
+      document.getElementById("btnAmount").addEventListener('click',function(){
+        let amount = document.getElementById("inputAmount").value;
+        amount = Number(amount);
+        if(amount >= App.minAmount){
 
-      for (var i = 1; i <= candidatesCount; i++) {
-        electionInstance.candidates(i).then(function(candidate) {
-          var id = candidate[0];
-          var name = candidate[1];
-          var voteCount = candidate[2];
 
-          // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
-          candidatesResults.append(candidateTemplate);
-        });
-      }
+          App.contracts.CharityApp.deployed().then(instance=>{
+        
+            instance.donate(App.account,{value: amount}).then(txHash => {
+              console.log(txHash)
+           } )})
+
+
+
+        }
+        else{
+          alert('should be bigger than minimum amount:' + App.minAmount)
+        }
+      });
 
       loader.hide();
       content.show();

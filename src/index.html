@@ -4,33 +4,39 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Election Results</title>
+    <title>Charity Dapp</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container" style="width: 650px;">
+    <div class="container boxFull">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">Election Results</h1>
+          <h1 class="text-center">Charity Dapp</h1>
           <hr/>
           <br/>
           <div id="loader">
             <p class="text-center">Loading...</p>
           </div>
           <div id="content" style="display: none;">
-            <table class="table">
+
+
+            <input type="text" id="inputAmount">
+            <button id="btnAmount">Donate</button>
+
+            <!-- <table class="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Votes</th>
+                  <th scope="col">Amount</th>
                 </tr>
               </thead>
-              <tbody id="candidatesResults">
+              <tbody id="donateResults">
               </tbody>
-            </table>
+            </table> -->
             <hr/>
             <p id="accountAddress" class="text-center"></p>
           </div>
