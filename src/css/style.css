@@ -8,11 +8,23 @@ body{
 }
 .boxFull{
     width:650px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(0,0,0,0.7);
+    color:#ffffff;
+    min-height: 400px;
 }
 hr{
-    border-color: #000000;
+    border-color: #ffffff;
 }
 .table>thead>tr>th{
-    border-color: #000000;
+    border-color: #ffffff;
+}
+#btnAmount,#inputAmount{
+    color: #000000;
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+}
+.loadingImg{
+    width:100px;
+    margin-top: 50px;
 }
